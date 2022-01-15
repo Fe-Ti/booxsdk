@@ -24,20 +24,27 @@ The directory `imx508` is for BOOX A62/A62S, M92/M92S and I62. The file `gcc-4.4
 ## Building the SDK
 
 Grab the source:
+```
     git clone git@github.com:onyx-intl/booxsdk.git
     git submodule update --init
-
+```
 Then download some prebuilt third-party libraries:
-    In each directory in toolchain repository that mentioned above, there is an archive named with sdk_xxx.tar.gz. The archive contains the prebuilt third-party libraries for the target platform. Extract it to `/opt` too.
-    Note: In `/opt/onyx/arm/` directory, there can be only one platform at a time. If needed to build different platforms, rename the `arm` to different names, like `arm_imx508`, `arm_imx31`, `arm_marvell`. And link `arm` to the real directory by command:
+
+In each directory in toolchain repository that mentioned above, there is an archive named with sdk_xxx.tar.gz. The archive contains the prebuilt third-party libraries for the target platform. Extract it to `/opt` too.
+    
+Note: In `/opt/onyx/arm/` directory, there can be only one platform at a time. If needed to build different platforms, rename the `arm` to different names, like `arm_imx508`, `arm_imx31`, `arm_marvell`. And link `arm` to the real directory by command:
+    
+```
     cd /opt/onyx/ && ln -s arm_imx508/ arm
+```
 
 If you want to build the third-party libraries from source, you can
 get the source code at http://opensource.onyx-international.com/
 
 To build the SDK, install CMake and Rake, then run
+```
     rake build:arm:default
-
+```
 CCache and DistCC will be used if they are available. If you do not
 want to use DistCC, append `DISABLE_DISTCC=1` to the build command.
 
@@ -46,8 +53,9 @@ with earlier versions. If you want your application to run no matter
 which version of the libraries are installed on the device, you can
 link your application against the static libraries. You can build the
 static libraries by running
+```
     rake build:arm:static
-
+```
 ## Notes for 64-bit hosts
 
 If you are running a 64-bit environment, please make sure you have
